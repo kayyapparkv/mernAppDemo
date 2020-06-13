@@ -81,7 +81,7 @@ class App extends React.Component {
     //JSX
     return(
       <div className="app">
-        <h2>Welcome to my APP</h2>
+        <h2>Notes Down</h2>
         <form onSubmit = {this.submit}>
           <div className="form-input">
             <input 

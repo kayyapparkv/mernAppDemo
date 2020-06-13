@@ -33,7 +33,8 @@ app.use('/api', routes);
 
 
 if(process.env.NODE_ENV === 'production') {
-    app.use(require('express').static('./client/build'));
+    console.log('*******************************************');
+    app.use(express.static('client/build'));
 }
 
 
