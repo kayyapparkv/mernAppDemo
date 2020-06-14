@@ -1,7 +1,12 @@
 import React from 'react';
 import axios from 'axios';
+import {BrowserRouter as Router, Switch, Route} from 'react-router-dom';
 
 import './App.css';
+
+import Nav from './Nav';
+import CattleDetails from './addCattleDetails';
+import logo from './dvaratrustlogo.png';
 
 class App extends React.Component {
   state = {
@@ -10,69 +15,69 @@ class App extends React.Component {
     posts: []
   }
 
-  componentDidMount = () => {
-    this.getBlogPost();
-  }
+  // componentDidMount = () => {
+  //   this.getBlogPost();
+  // }
 
-  getBlogPost = () => {
-    axios({
-      url: 'api',
-      method: 'GET'
-    }).then((response) => {
-      const data = response.data;
-      this.setState({posts: data});
-      console.log('Data has been received!!');
-    }).catch(() => {
-      console.log('Error retrieving error');
-    })
-  }
+  // getBlogPost = () => {
+  //   axios({
+  //     url: 'api',
+  //     method: 'GET'
+  //   }).then((response) => {
+  //     const data = response.data;
+  //     this.setState({posts: data});
+  //     console.log('Data has been received!!');
+  //   }).catch(() => {
+  //     console.log('Error retrieving error');
+  //   })
+  // }
 
-  handleChange = ({target}) => {
-    const {name, value} = target;
-    this.setState({
-      [name]: value
-    });
-  };
+  // handleChange = ({target}) => {
+  //   const {name, value} = target;
+  //   this.setState({
+  //     [name]: value
+  //   });
+  // };
 
-  submit = (event) => {
-    event.preventDefault();
+  // submit = (event) => {
+  //   event.preventDefault();
 
-    const payload = {
-      title: this.state.title,
-      body: this.state.body
-    };
-    console.log(payload);
-    axios({
-      url: 'api/save',
-      method: 'POST',
-      data: payload
-    }).then(() => {
-      console.log(`data has been sent to the server`);
-      this.resetUserInputs();
-      this.getBlogPost();
-    })
-    .catch(() => {
-      console.log(`Internal server error`);
-    });
-  };
+  //   const payload = {
+  //     title: this.state.title,
+  //     body: this.state.body
+  //   };
+  //   console.log(payload);
+  //   axios({
+  //     url: 'api/save',
+  //     method: 'POST',
+  //     data: payload
+  //   }).then(() => {
+  //     console.log(`data has been sent to the server`);
+  //     this.resetUserInputs();
+  //     this.getBlogPost();
+  //   })
+  //   .catch(() => {
+  //     console.log(`Internal server error`);
+  //   });
+  // };
 
-  resetUserInputs = () => {
-    this.setState({
-      title: '',
-      body: ''
-    });
-  } 
+  // resetUserInputs = () => {
+  //   this.setState({
+  //     title: '',
+  //     body: ''
+  //   });
+  // } 
 
-  displayPost = (posts) => {
-    if(!posts.length) return null;
+  // displayPost = (posts) => {
+  //   if(!posts.length) return null;
 
-    return posts.map((post, index) => (
-      <div key={index} className="blogPostDisplay">
-        <h3>{post.title}</h3>
-        <p>{post.body}</p>
-      </div>
-    ));
-  }
+  //   return posts.map((post, index) => (
+  //     <div key={index} className="blogPostDisplay">
+  //       <h3>{post.title}</h3>
+  //       <p>{post.body}</p>
+  //     </div>
+  //   ));
+  // }
 
   render() {
 
@@ -80,6 +85,7 @@ class App extends React.Component {
 
     //JSX
     return(
+      /*
       <div className="app">
         <h2>Notes Down</h2>
         <form onSubmit = {this.submit}>
@@ -109,9 +115,32 @@ class App extends React.Component {
           {this.displayPost(this.state.posts)}
         </div>
       </div>
+      */
+      <Router>
+        <div>
+          <div className="header-logo">
+            <ul className = "top-bar">
+              <li><img src={logo} /></li>
+              <li className = "top-bar-header"><h3>Dvara E-Dairy Farm Solutions</h3></li>
+            </ul>
+          </div>
+          <Nav />
+          <switch>
+            {/* <Route path="/home" component={Home}/> */}
+            <Route path="/" exact component={HomePage}/>
+            <Route path="/details" component={CattleDetails}/>
+          </switch>
+        </div>
+      </Router>
     );
   }
 
 }
+
+const HomePage = () => (
+  <div>
+    <h1>Home Page</h1>
+  </div>
+);
 
 export default App;

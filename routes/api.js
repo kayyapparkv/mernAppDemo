@@ -22,7 +22,7 @@ router.post('/save', (req, res) => {
     const newBlogPost = new BlogPost(data);
 
     //.save()
-    newBlogPost.save((error) => {
+    BlogPost.insertMany(data, (error) => {
         if(error) {
             res.status(500).json({
                 message: 'Sorry, Internal server error'
