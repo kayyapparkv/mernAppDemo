@@ -56,7 +56,7 @@ class addCattleDetails extends React.Component {
                 <h3>{this.state.sheetName}</h3>
                 <form onSubmit={this.submit}>
                     <label className="label-class">
-                        <input type = "file" onChange={this.fileHandler.bind(this)} className="browse-file" />
+                        <input type = "file" onChange={this.fileHandler.bind(this)} className="browse-file" accept=".xlsx" />
                         <a className="choose-field">Upload Herd Details</a>
                     </label><br/>
                     <button>Submit</button>

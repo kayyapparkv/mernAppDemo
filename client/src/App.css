@@ -81,3 +81,25 @@ nav {
     display: block;
     text-align: center;
 }
+
+.graph-div {
+  display: table;
+  width: 100%;
+}
+
+.row {
+  display: table-row;
+}
+
+.graph1{
+  display: table-cell;
+  width: 50%;
+}
+
+.graph2{
+  display: table-cell;
+  width: 50%;
+  float: left;
+}
+
+

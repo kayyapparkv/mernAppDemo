@@ -6,14 +6,13 @@ import './App.css';
 
 import Nav from './Nav';
 import CattleDetails from './addCattleDetails';
+import homePage from './homePage';
 import logo from './dvaratrustlogo.png';
 
 class App extends React.Component {
-  state = {
-    title: '',
-    body: '',
-    posts: []
-  }
+  // state = {
+  //   data: []
+  // }
 
   // componentDidMount = () => {
   //   this.getBlogPost();
@@ -25,8 +24,10 @@ class App extends React.Component {
   //     method: 'GET'
   //   }).then((response) => {
   //     const data = response.data;
-  //     this.setState({posts: data});
+  //     console.log(data);
+  //     this.setState({data: data});
   //     console.log('Data has been received!!');
+  //     console.log(this.state.data);
   //   }).catch(() => {
   //     console.log('Error retrieving error');
   //   })
@@ -81,7 +82,6 @@ class App extends React.Component {
 
   render() {
 
-  console.log('State:', this.state);
 
     //JSX
     return(
@@ -127,7 +127,7 @@ class App extends React.Component {
           <Nav />
           <switch>
             {/* <Route path="/home" component={Home}/> */}
-            <Route path="/" exact component={HomePage}/>
+            <Route path="/" exact component={homePage}/>
             <Route path="/details" component={CattleDetails}/>
           </switch>
         </div>
@@ -136,11 +136,5 @@ class App extends React.Component {
   }
 
 }
-
-const HomePage = () => (
-  <div>
-    <h1>Home Page</h1>
-  </div>
-);
 
 export default App;

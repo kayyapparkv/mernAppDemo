@@ -5,7 +5,7 @@ const BlogPost = require('../models/blogPost');
 
 //Routes
 router.get('/', (req, res) => {
-    BlogPost.find({ })
+    BlogPost.find({ }).limit(7).sort({"DATE ": -1})
     .then((data) => {
         console.log('Data:', data);
         res.json(data);
@@ -25,7 +25,7 @@ router.post('/save', (req, res) => {
     BlogPost.insertMany(data, (error) => {
         if(error) {
             res.status(500).json({
-                message: 'Sorry, Internal server error'
+                message: 'Sorry, Internal server error or Wrong Format Data'
             });
             return;
         }
