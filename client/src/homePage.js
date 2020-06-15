@@ -10,13 +10,7 @@ let fatPoints = [];
 
 CanvasJS.addColorSet("customColorSet1",
 [//colorSet Array
-    "#3CB371",
-    "#3CB371",
-"#3CB371",
-"#3CB371",
-"#3CB371",
-"#3CB371",
-"#3CB371",
+    "rgb(8, 191, 6)",
 ]);
 CanvasJS.addColorSet("customColorSet2",
 [//colorSet Array
@@ -77,7 +71,7 @@ class homePage extends React.Component {
             title: {
                 text: 'MILK PRODUCTION OVERVIEW',
                 fontColor: "white",
-                backgroundColor: "green",
+                backgroundColor: "rgb(198, 252, 3)",
                 padding: 15
             },
 			axisY: {
@@ -87,7 +81,9 @@ class homePage extends React.Component {
 				type: "line",
 				xValueFormatString: "MMM YYYY",
 				yValueFormatString: "$#,##0.00",
-                dataPoints: milkProductionPoints
+                dataPoints: milkProductionPoints,
+                indexLabel: "{y}",
+                indexLabelPlacement: "inside"
 			}]
 		}
 
@@ -96,7 +92,7 @@ class homePage extends React.Component {
             title: {
                 text: 'Milk Price Overview (Last 7 days)',
                 fontColor: "white",
-                backgroundColor: "green",
+                backgroundColor: "rgb(198, 252, 3)",
                 padding: 10,
             },
             
@@ -104,7 +100,9 @@ class homePage extends React.Component {
 			{
 				// Change type to "doughnut", "line", "splineArea", etc.
 				type: "column",
-				dataPoints: milkPriceDataPoints
+                dataPoints: milkPriceDataPoints,
+                indexLabel: "{y}",
+                indexLabelPlacement: "top"
 			}
 			]
         }
@@ -114,7 +112,7 @@ class homePage extends React.Component {
             title: {
                 text: 'Fat and SNF OVERVIEW (Last 7 days)',
                 fontColor: "white",
-                backgroundColor: "green",
+                backgroundColor: "rgb(198, 252, 3)",
                 padding: 10
             },
             animationEnabled: true,	
@@ -128,13 +126,17 @@ class homePage extends React.Component {
                 type: "spline",
                 name: "SNF",
                 showInLegend: true,
-                dataPoints: snfPoints
+                dataPoints: snfPoints,
+                indexLabel: "{y}",
+                indexLabelPlacement: "top",
             },
             {
                 type: "spline",
                 name: "FAT",
                 showInLegend: true,
-                dataPoints: fatPoints
+                dataPoints: fatPoints,
+                indexLabel: "{y}",
+                indexLabelPlacement: "top",
             }]
     }
 		return (
