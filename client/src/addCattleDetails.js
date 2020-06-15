@@ -33,7 +33,6 @@ class addCattleDetails extends React.Component {
 
         let fileObj = e.target.files;
         let f =fileObj[0];
-        console.log(f);
         let reader = new FileReader();
         reader.onload = (e) => {
             let data = e.target.result;
@@ -46,7 +45,6 @@ class addCattleDetails extends React.Component {
                 sheetName: fileObj[0].name,
                 data: rowObject
             })
-            console.log(rowObject);
         };
         reader.readAsBinaryString(f);
     }

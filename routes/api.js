@@ -7,7 +7,6 @@ const BlogPost = require('../models/blogPost');
 router.get('/', (req, res) => {
     BlogPost.find({ }).limit(7).sort({"DATE ": -1})
     .then((data) => {
-        console.log('Data:', data);
         res.json(data);
     })
     .catch((error) => {
