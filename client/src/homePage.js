@@ -9,25 +9,26 @@ let snfPoints = [];
 let fatPoints = [];
 
 CanvasJS.addColorSet("customColorSet1",
-[//colorSet Array
+[
     "rgb(8, 191, 6)",
 ]);
 CanvasJS.addColorSet("customColorSet2",
-[//colorSet Array
+[
     "orange",
     "blue",
 ]);
 class homePage extends React.Component {
 
-    
       componentDidMount = () => {
         this.getBlogPost();
       }
 
       getBlogPost = () => {
-          var milkProductionChart = this.milkProductionChart;
-          var milkPriceChart = this.milkPriceChart;
-          var snfFatChart = this.snfFatChart;
+        var milkProductionChart = this.milkProductionChart;
+        var milkPriceChart = this.milkPriceChart;
+        var snfFatChart = this.snfFatChart;
+
+
         axios({
           url: 'api',
           method: 'GET'
@@ -35,7 +36,9 @@ class homePage extends React.Component {
           const data = response.data;
           this.setState({data: data});
           console.log('Data has been received!!',data);
-          for(let i=6; i>= 0; i--){
+          console.log(data, data.length);
+          let len = data.length;
+          for(let i=len - 1; i>= 0; i--){
             milkPriceDataPoints.push({
                 label: new Date(`${data[i]["DATE "]}`).toLocaleDateString(),
                 y: data[i]["MILK PRICE"]
