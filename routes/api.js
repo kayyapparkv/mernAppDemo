@@ -6,15 +6,18 @@ const BlogPost = require('../models/blogPost');
 
 //Routes
 router.get('/', (req, res) => {
-    BlogPost.find({ }).limit(7).sort({'DATE ': -1, 'CREATED_AT': -1})
-    .then((data) => {
-        console.log(data);
-        res.json(data);
-    })
-    .catch((error) => {
-        console.log('error:', error);
-    });
 
+    //normal data with sorted date with created date
+    // BlogPost.find({ }).limit(7).sort({'DATE ': -1, 'CREATED_AT': -1})
+    // n((data) => {
+    //     console.log(data);
+    //     res.json(data);
+    // })
+    // .catch((error) => {
+    //     console.log('error:', error);
+    // });
+
+    //data with uniques data eithout created at
     // BlogPost.aggregate(
     //     [
     //         {
@@ -40,6 +43,47 @@ router.get('/', (req, res) => {
     //       .catch ((err) => {
     //         console.log('error:', error);
     //       })
+
+    //most recent data in redundant date
+    BlogPost.aggregate(
+        [
+            {
+              '$sort': {
+                'DATE ': -1, 
+                'CREATED_AT': 1
+              }
+            }, {
+              '$group': {
+                '_id': '$DATE ', 
+                'array': {
+                  '$push': {
+                    'DATE ': '$DATE ', 
+                    'CREATED_AT': '$CREATED_AT',
+                    'FAT ': '$FAT', 
+                    'MILK PRICE': '$MILK PRICE', 
+                    'MILK PRODUCTION ': '$MILK PRODUCTION ', 
+                    'SNF': '$SNF'
+                  }
+                }
+              }
+            }, {
+              '$project': {
+                '_id': 0, 
+                'recent': {
+                  '$slice': [
+                    '$array', -1
+                  ]
+                }
+              }
+            }
+          ]).then((data) => {
+            res.json(data);
+          })
+          .catch ((err) => {
+            console.log('error:', err);
+          })
+
+    
 
 });
 

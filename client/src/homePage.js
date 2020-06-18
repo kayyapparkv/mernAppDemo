@@ -40,20 +40,20 @@ class homePage extends React.Component {
           let len = data.length;
           for(let i=len - 1; i>= 0; i--){
             milkPriceDataPoints.push({
-                label: new Date(`${data[i]["DATE "]}`).toLocaleDateString(),
-                y: data[i]["MILK PRICE"]
+                label: new Date(`${data[i].recent[0]["DATE "]}`).toLocaleDateString(),
+                y: data[i].recent[0]["MILK PRICE"]
             });
             milkProductionPoints.push({
-                label: new Date(`${data[i]["DATE "]}`).toLocaleDateString(),
-                y: data[i]["MILK PRODUCTION "]
+                label: new Date(`${data[i].recent[0]["DATE "]}`).toLocaleDateString(),
+                y: data[i].recent[0]["MILK PRODUCTION "]
             });
             snfPoints.push({
-                label: new Date(`${data[i]["DATE "]}`).toLocaleDateString(),
-                y: data[i]["SNF"]
+                label: new Date(`${data[i].recent[0]["DATE "]}`).toLocaleDateString(),
+                y: data[i].recent[0]["SNF"]
             });
             fatPoints.push({
-                label: new Date(`${data[i]["DATE "]}`).toLocaleDateString(),
-                y: data[i]["FAT"]
+                label: new Date(`${data[i].recent[0]["DATE "]}`).toLocaleDateString(),
+                y: data[i].recent[0]["FAT"]
             })
           }
           milkProductionChart.render();
