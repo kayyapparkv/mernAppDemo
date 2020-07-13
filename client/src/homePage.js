@@ -59,6 +59,7 @@ class homePage extends React.Component {
           milkProductionChart.render();
           milkPriceChart.render();
           snfFatChart.render();
+          console.log(milkPriceDataPoints, milkProductionPoints, snfPoints, fatPoints);
           milkPriceDataPoints = [];
          milkProductionPoints = [];
          snfPoints = [];

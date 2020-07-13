@@ -49,8 +49,7 @@ router.get('/', (req, res) => {
         [
             {
               '$sort': {
-                'DATE ': -1, 
-                'CREATED_AT': 1
+                'CREATED_AT': -1
               }
             }, {
               '$group': {
@@ -59,12 +58,16 @@ router.get('/', (req, res) => {
                   '$push': {
                     'DATE ': '$DATE ', 
                     'CREATED_AT': '$CREATED_AT',
-                    'FAT ': '$FAT', 
+                    'FAT': '$FAT', 
                     'MILK PRICE': '$MILK PRICE', 
                     'MILK PRODUCTION ': '$MILK PRODUCTION ', 
                     'SNF': '$SNF'
                   }
                 }
+              }
+            }, {
+              '$sort': {
+                '_id': -1
               }
             }, {
               '$project': {
@@ -75,8 +78,14 @@ router.get('/', (req, res) => {
                   ]
                 }
               }
+            }, {
+              '$limit': 7
             }
+            
           ]).then((data) => {
+            data.forEach((item) => {
+              console.log(item);
+            })
             res.json(data);
           })
           .catch ((err) => {
@@ -88,9 +97,14 @@ router.get('/', (req, res) => {
 });
 
 router.post('/save', (req, res) => {
-    console.log('Body:', req.body);
+    // console.log('Body:', req.body);
     const data = req.body;
 
+    data.forEach((item) => {
+      let date = item['DATE '];
+      date = (new Date(date).getTime() + (60 * 60 * 24 * 1000));
+      item['DATE '] = date;
+    })
     const newBlogPost = new BlogPost(data);
 
     //.save()
