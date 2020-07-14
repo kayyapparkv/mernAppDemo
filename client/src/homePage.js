@@ -36,23 +36,22 @@ class homePage extends React.Component {
           const data = response.data;
           this.setState({data: data});
           console.log('Data has been received!!',data);
-          console.log(data, data.length);
           let len = data.length;
           for(let i=len - 1; i>= 0; i--){
             milkPriceDataPoints.push({
-                label: new Date(`${data[i].recent[0]["DATE "]}`).toLocaleDateString(),
+                label: new Date(`${data[i].recent[0]["DATE"]}`).toLocaleDateString(),
                 y: data[i].recent[0]["MILK PRICE"]
             });
             milkProductionPoints.push({
-                label: new Date(`${data[i].recent[0]["DATE "]}`).toLocaleDateString(),
-                y: data[i].recent[0]["MILK PRODUCTION "]
+                label: new Date(`${data[i].recent[0]["DATE"]}`).toLocaleDateString(),
+                y: data[i].recent[0]["MILK PRODUCTION"]
             });
             snfPoints.push({
-                label: new Date(`${data[i].recent[0]["DATE "]}`).toLocaleDateString(),
+                label: new Date(`${data[i].recent[0]["DATE"]}`).toLocaleDateString(),
                 y: data[i].recent[0]["SNF"]
             });
             fatPoints.push({
-                label: new Date(`${data[i].recent[0]["DATE "]}`).toLocaleDateString(),
+                label: new Date(`${data[i].recent[0]["DATE"]}`).toLocaleDateString(),
                 y: data[i].recent[0]["FAT"]
             })
           }

@@ -53,14 +53,14 @@ router.get('/', (req, res) => {
               }
             }, {
               '$group': {
-                '_id': '$DATE ', 
+                '_id': '$DATE', 
                 'array': {
                   '$push': {
-                    'DATE ': '$DATE ', 
+                    'DATE': '$DATE', 
                     'CREATED_AT': '$CREATED_AT',
                     'FAT': '$FAT', 
                     'MILK PRICE': '$MILK PRICE', 
-                    'MILK PRODUCTION ': '$MILK PRODUCTION ', 
+                    'MILK PRODUCTION': '$MILK PRODUCTION', 
                     'SNF': '$SNF'
                   }
                 }
@@ -74,7 +74,7 @@ router.get('/', (req, res) => {
                 '_id': 0, 
                 'recent': {
                   '$slice': [
-                    '$array', -1
+                    '$array', 1
                   ]
                 }
               }
@@ -101,11 +101,11 @@ router.post('/save', (req, res) => {
     const data = req.body;
 
     data.forEach((item) => {
-      let date = item['DATE '];
+      let date = item['DATE'];
       date = (new Date(date).getTime() + (60 * 60 * 24 * 1000));
-      item['DATE '] = date;
+      item['DATE'] = date;
     })
-    const newBlogPost = new BlogPost(data);
+    // const newBlogPost = new BlogPost(data);
 
     //.save()
     BlogPost.insertMany(data, (error) => {
